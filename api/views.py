@@ -28,7 +28,11 @@ def taskDetail(request,pk):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def taskCreate(request):
-    serializer=TaskSerializer(data=request.data)
+    
+    account=request.user
+    todo_post=Task(user=account)
+
+    serializer=TaskSerializer(todo_post,data=request.data)
     if serializer.is_valid():
         serializer.save()
 
