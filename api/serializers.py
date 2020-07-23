@@ -2,9 +2,9 @@ from rest_framework import serializers
 from .models import Task
 
 class TaskSerializer(serializers.ModelSerializer):
+
     username=serializers.SerializerMethodField('get_username_from')
-
-
+    
     class Meta:
         model=Task
         fields='__all__'
